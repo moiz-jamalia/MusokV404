@@ -19,15 +19,33 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.nio.file.Paths;
 import java.awt.Toolkit;
 import java.awt.Font;
+import jaco.mp3.player.MP3Player;
 //import jaco.mp3.player.MP3Player;
 
 public class PlayerWindow extends JFrame {
 
 	private JPanel contentPane;
-//	MP3Player player;
+	//Define MP3Player Class form jaco
+	MP3Player player;
+	//Define File for Song
+	File songFile;
+	//Define Current Direcotry
+	String currentDirectory = "home.user";
+	String currentPath;
+	//For Images of the Song
+	String imagePath;
+	//Repeat of and check
+	Boolean check = false;
+	//Check if Window colapsed
+	Boolean windowCollapsed = false;
+	//Mouse x,y seeds, (do I need them?)
+	int xMouse, yMouse;
 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -104,11 +122,23 @@ public class PlayerWindow extends JFrame {
 			}
 		});
 		
-		JLabel lblPlaying = new JLabel("Newasdf label");
-		lblPlaying.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		lblPlaying.setForeground(Color.WHITE);
-		lblPlaying.setBackground(Color.LIGHT_GRAY);
-		contentPane.add(lblPlaying, BorderLayout.NORTH);
+		JLabel lblSongName = new JLabel("");
+		lblSongName.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblSongName.setForeground(Color.WHITE);
+		lblSongName.setBackground(Color.LIGHT_GRAY);
+		contentPane.add(lblSongName, BorderLayout.NORTH);
+		
+		
+		// get File name
+		String filename = songFile.getName();
+		//set song name
+		lblSongName.setText(filename);
+		player = mp3Player();
+		//song zu einer Playlist hinzufügen
+		player.addToPlayList(songFile);
+		//get img Path in strings
+		currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+		imagePath = "\\images";
 		
 		
 		//ActionListener
@@ -131,5 +161,10 @@ public class PlayerWindow extends JFrame {
 			}
 		});
 		
+	}
+	
+	private MP3Player mp3Player(){
+		MP3Player mp3Player = new MP3Player();
+		return mp3Player;
 	}
 }
