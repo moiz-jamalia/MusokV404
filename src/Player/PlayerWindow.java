@@ -29,7 +29,7 @@ import jaco.mp3.player.MP3Player;
 public class PlayerWindow extends JFrame {
 
 	private JPanel contentPane;
-	//Define MP3Player Class form jaco
+	//Define MP3Player Class from jaco
 	MP3Player player;
 	//Define File for Song
 	File songFile;
@@ -57,7 +57,6 @@ public class PlayerWindow extends JFrame {
 					
 					frame.setTitle("Musokify");
 					frame.setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()-50), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()-150)); //get screensize and set it up to it
-					frame.setMaximizedBounds(new Rectangle(0,0 , 50, 50)); //create max
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null); //make it to open in the middle
 
@@ -98,7 +97,8 @@ public class PlayerWindow extends JFrame {
 		panel.add(lblPause);
 		
 		JLabel lblPlay = new JLabel("");
-		lblPlay.setForeground(Color.WHITE);
+		lblPlay.setBackground(Color.BLACK);
+		lblPlay.setForeground(Color.BLACK);
 		lblPlay.setIcon(new ImageIcon(PlayerWindow.class.getResource("/Images/PlayIcon.png")));
 		panel.add(lblPlay);
 		
@@ -116,6 +116,18 @@ public class PlayerWindow extends JFrame {
 		lblShuffle.setIcon(new ImageIcon(PlayerWindow.class.getResource("/Images/ShuffleIcon.png")));
 		panel.add(lblShuffle);
 		
+		JLabel lblVolDown = new JLabel("");
+		lblVolDown.setIcon(new ImageIcon(PlayerWindow.class.getResource("/Images/VolumeDown.png")));
+		panel.add(lblVolDown);
+		
+		JLabel lblVolUp = new JLabel("");
+		lblVolUp.setIcon(new ImageIcon(PlayerWindow.class.getResource("/Images/VolumeUp.png")));
+		panel.add(lblVolUp);
+		
+		JLabel lblVolMute = new JLabel("");
+		lblVolMute.setIcon(new ImageIcon(PlayerWindow.class.getResource("/Images/VolumeMute.png")));
+		panel.add(lblVolMute);
+		
 		lblShuffle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -129,16 +141,16 @@ public class PlayerWindow extends JFrame {
 		contentPane.add(lblSongName, BorderLayout.NORTH);
 		
 		
-		// get File name
-		String filename = songFile.getName();
-		//set song name
-		lblSongName.setText(filename);
-		player = mp3Player();
-		//song zu einer Playlist hinzufügen
-		player.addToPlayList(songFile);
-		//get img Path in strings
-		currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-		imagePath = "\\images";
+//		// get File name
+//		String filename = songFile.getName();
+//		//set song name
+//		lblSongName.setText(filename);
+//		player = mp3Player();
+//		//song zu einer Playlist hinzufügen
+//		player.addToPlayList(songFile);
+//		//get img Path in strings
+//		currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+//		imagePath = "\\images";
 		
 		
 		//ActionListener
@@ -163,8 +175,8 @@ public class PlayerWindow extends JFrame {
 		
 	}
 	
-	private MP3Player mp3Player(){
-		MP3Player mp3Player = new MP3Player();
-		return mp3Player;
-	}
+//	private MP3Player mp3Player(){
+//		MP3Player mp3Player = new MP3Player();
+//		return mp3Player;
+//	}
 }
